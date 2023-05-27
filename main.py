@@ -3,8 +3,9 @@ import requests
 
 
 def get_quote():
-    requests_kanye_quotes = requests.get("https://api.kanye.rest")
-    data = requests_kanye_quotes.json()
+    response = requests.get("https://api.kanye.rest")
+    response.raise_for_status()    # Just call the function here.(raise_for_status)
+    data = response.json()
 
     only_quote = data['quote']
     canvas.itemconfig(quote_text, text=only_quote)
